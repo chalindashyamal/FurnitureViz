@@ -30,6 +30,7 @@ describe("POST /api/design", () => {
   it("should return 201 on successful design creation", async () => {
     (dbConnect as jest.Mock).mockResolvedValue(undefined);
     const saveMock = jest.fn().mockResolvedValue(undefined);
+    (Design as jest.Mock).mockImplementation(() => ({ save: saveMock }));
 
     const designData = {
       roomName: "Master Bedroom",
