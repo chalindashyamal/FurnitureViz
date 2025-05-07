@@ -32,6 +32,7 @@ describe("POST /api/auth/register", () => {
     (User.findOne as jest.Mock).mockResolvedValue(null);
     (bcrypt.hash as jest.Mock).mockResolvedValue("hashedpassword123");
     const saveMock = jest.fn().mockResolvedValue(undefined);
+    (User as jest.Mock).mockImplementation(() => ({ save: saveMock }));
 
     const request = {
       json: jest.fn().mockResolvedValue({ name: "Test User", email: "new@example.com", password: "password123" }),
